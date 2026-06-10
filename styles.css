@@ -10,6 +10,11 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
@@ -17,6 +22,7 @@ body {
   background: var(--paper);
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.55;
+  overflow-x: hidden;
 }
 
 a {
@@ -51,6 +57,7 @@ a {
   flex-wrap: wrap;
   justify-content: flex-end;
   gap: 0.45rem 1.1rem;
+  min-width: 0;
   font-size: 0.95rem;
 }
 
@@ -72,6 +79,11 @@ a {
 .hero-body {
   padding-top: 5rem;
   padding-bottom: 5rem;
+}
+
+.hero .container {
+  min-width: 0;
+  max-width: 100%;
 }
 
 .venue-line,
@@ -104,6 +116,7 @@ a {
   justify-content: center;
   gap: 0.75rem;
   margin-top: 2rem;
+  max-width: 100%;
 }
 
 .quick-links a {
@@ -130,6 +143,14 @@ a {
   padding-bottom: 4rem;
 }
 
+.container {
+  width: 100%;
+}
+
+.container.is-max-desktop {
+  max-width: 58rem !important;
+}
+
 .soft-section {
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
@@ -153,6 +174,22 @@ a {
 
 .challenge-list li {
   padding: 0.55rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.background-title {
+  margin-top: 1.8rem;
+  color: var(--accent-dark);
+}
+
+.reference-list {
+  margin: 0.6rem 0 0 1.15rem;
+  max-width: 58rem;
+  font-size: 0.98rem;
+}
+
+.reference-list li {
+  padding: 0.45rem 0;
   border-top: 1px solid var(--line);
 }
 
@@ -261,7 +298,15 @@ a {
 }
 
 .person-card.compact .affiliation {
-  white-space: nowrap;
+  line-height: 1.2;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+.talk-angle {
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: var(--muted) !important;
 }
 
 .note-box {
@@ -300,6 +345,8 @@ a {
   }
 
   .nav-links {
+    width: 100%;
+    max-width: 100%;
     justify-content: flex-start;
   }
 
@@ -309,11 +356,15 @@ a {
   }
 
   .workshop-title {
-    font-size: 2.55rem !important;
+    font-size: 2.35rem !important;
+    line-height: 1.12;
+    overflow-wrap: anywhere;
   }
 
   .workshop-subtitle {
-    font-size: 1.45rem !important;
+    font-size: 1.32rem !important;
+    line-height: 1.25;
+    overflow-wrap: anywhere;
   }
 
   .compact-grid {
@@ -322,9 +373,55 @@ a {
 }
 
 @media (max-width: 640px) {
+  .nav-strip {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .nav-links {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.35rem 0.65rem;
+  }
+
+  .nav-links a {
+    min-width: 0;
+    overflow-wrap: break-word;
+  }
+
+  .hero-body {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .venue-line {
+    font-size: 0.85rem;
+    overflow-wrap: anywhere;
+  }
+
+  .meeting-line {
+    overflow-wrap: anywhere;
+  }
+
+  .workshop-title {
+    max-width: 100%;
+    font-size: 1.82rem !important;
+    overflow-wrap: break-word;
+    white-space: normal;
+  }
+
+  .workshop-subtitle {
+    max-width: 100%;
+    font-size: 1rem !important;
+    overflow-wrap: break-word;
+    white-space: normal;
+  }
+
   .section {
     padding-top: 3rem;
     padding-bottom: 3rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
   }
 
   .schedule-table,
@@ -371,10 +468,16 @@ a {
 
   .quick-links a {
     justify-content: center;
+    min-width: 0;
+    width: 100%;
   }
 
   .site-footer .container {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .person-card.compact .affiliation {
+    white-space: normal;
   }
 }
